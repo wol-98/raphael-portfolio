@@ -1,4 +1,4 @@
-# Premium Developer OS Portfolio Ecosystem (2026 Edition)
+# Portfolio Ecosystem (2026 Edition)
 
 A high-performance, immersive, and data-driven terminal-inspired web ecosystem designed to showcase software engineering, Linux systems administration, and embedded IoT development tracks. 
 
@@ -6,7 +6,7 @@ This platform moves away from generic static templates, operating instead as a l
 
 ---
 
-## 🛠️ Core System Architecture
+## Core System Architecture
 
 - **Frontend Core:** Semantic HTML5, CSS Variables, Full-bleed UI matrices.
 - **Typography Engine:** Inter & JetBrains Mono (monospaced context rendering).
@@ -16,7 +16,7 @@ This platform moves away from generic static templates, operating instead as a l
 
 ---
 
-## 💎 Features & Modules Implemented
+## Features & Modules Implemented
 
 ### 1. Hero Workspace & Cinematic Landing
 - Full-viewport ambient vector system managed via `particles.js`.

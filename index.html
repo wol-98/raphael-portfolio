@@ -38,7 +38,7 @@
             <li><a href="#projects">Projects</a></li>
             <li><a href="#experience">Experience</a></li>
             <li><a href="#services">Services</a></li>
-            <li><a href="#certificates">Education</a></li>
+            <li><a href="#certificates">Credentials</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
         <button id="theme-toggle" aria-label="Toggle dark mode">
@@ -51,7 +51,7 @@
             <div id="particles-js"></div>
             <div class="hero-content">
                 <img src="images/profile.jpg" alt="Raphael Wol SJ Headshot" class="profile-image">
-                <h2>Hello, I'm Raphael</h2>
+                <h2>Hello, I'm Raphael!</h2>
                 <p class="typing-text"></p>
                 <div class="hero-buttons">
                     <a href="#projects" class="btn">View Projects</a>
@@ -60,26 +60,118 @@
             </div>
         </section>
 
-        <section class="about" id="about">
-            <h2>About Me</h2>
-            <p>
-                I am an IT professional and student passionate about building secure, scalable applications. 
-                With experience ranging from backend development using Java and Spring Boot to mobile application 
-                development with Flutter, I enjoy tackling complex technical challenges. Whether I am configuring 
-                Linux server environments, exploring cybersecurity concepts, or wiring up Arduino-based IoT automation 
-                systems, I am driven by a curiosity for how software and hardware connect.
-            </p>
+        <section class="developer-console" id="about">
+            <h2>System Identification</h2>
+            <div class="terminal-window">
+                <div class="terminal-header">
+                    <div class="terminal-buttons">
+                        <span class="close-btn"></span>
+                        <span class="min-btn"></span>
+                        <span class="max-btn"></span>
+                    </div>
+                    <div class="terminal-title">raphael@linux-mint: ~</div>
+                </div>
+                <div class="terminal-body" id="terminal-body">
+                    <div class="terminal-active-line">
+                        <span class="prompt">raphael@linux-mint:~$</span>
+                        <span class="terminal-cursor">_</span>
+                    </div>
+                </div>
+            </div>
         </section>
 
         <section class="skills" id="skills">
-            <h2>Technical Arsenal</h2>
-            <div class="skills-container">
-                <div class="skill-card">Java & Spring Boot</div>
-                <div class="skill-card">Flutter & Dart</div>
-                <div class="skill-card">Linux Administration</div>
-                <div class="skill-card">Arduino & IoT</div>
-                <div class="skill-card">Cybersecurity Tools</div>
-                <div class="skill-card">Docker</div>
+            <h2>Technical Ecosystem</h2>
+            <div class="skills-grid-layout">
+                
+                <div class="skill-group-card">
+                    <h3><i class="fas fa-layer-group"></i> Backend & Engineering</h3>
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <span>Java & Spring Boot</span>
+                            <span class="skill-percent">90%</span>
+                        </div>
+                        <div class="skill-bar-bg">
+                            <div class="skill-bar-fill" data-progress="90%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <span>Docker Containers</span>
+                            <span class="skill-percent">80%</span>
+                        </div>
+                        <div class="skill-bar-bg">
+                            <div class="skill-bar-fill" data-progress="80%"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skill-group-card">
+                    <h3><i class="fas fa-mobile-alt"></i> Mobile & Frontend</h3>
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <span>Flutter & Dart</span>
+                            <span class="skill-percent">85%</span>
+                        </div>
+                        <div class="skill-bar-bg">
+                            <div class="skill-bar-fill" data-progress="85%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <span>UI/UX Architecture</span>
+                            <span class="skill-percent">75%</span>
+                        </div>
+                        <div class="skill-bar-bg">
+                            <div class="skill-bar-fill" data-progress="75%"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skill-group-card">
+                    <h3><i class="fas fa-terminal"></i> Systems & Infrastructure</h3>
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <span>Linux Administration (Mint)</span>
+                            <span class="skill-percent">90%</span>
+                        </div>
+                        <div class="skill-bar-bg">
+                            <div class="skill-bar-fill" data-progress="90%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <span>Shell Scripting & Automation</span>
+                            <span class="skill-percent">80%</span>
+                        </div>
+                        <div class="skill-bar-bg">
+                            <div class="skill-bar-fill" data-progress="80%"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skill-group-card">
+                    <h3><i class="fas fa-shield-alt"></i> IoT & Security</h3>
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <span>Arduino & Embedded Hardware</span>
+                            <span class="skill-percent">85%</span>
+                        </div>
+                        <div class="skill-bar-bg">
+                            <div class="skill-bar-fill" data-progress="85%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <span>Cybersecurity & Penetration Testing</span>
+                            <span class="skill-percent">75%</span>
+                        </div>
+                        <div class="skill-bar-bg">
+                            <div class="skill-bar-fill" data-progress="75%"></div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </section>
 
@@ -99,7 +191,7 @@
             </div>
         </section>
 
-        <section class="projects" id="projects">
+       <section class="projects" id="projects">
             <h2>Featured Projects</h2>
             <div class="project-grid">
                 
@@ -110,6 +202,7 @@
                         <p>An IoT automation project built with Arduino and Tinkercad, utilizing ultrasonic and light-dependent sensors for intelligent energy management.</p>
                         <div class="project-buttons">
                             <a href="https://github.com/wol-98/Smart-Streetlight-Project" target="_blank" class="btn secondary-btn">View Code</a>
+                            <button class="btn view-details-trigger" data-project="project1">Details</button>
                         </div>
                     </div>
                 </div>
@@ -121,6 +214,7 @@
                         <p>A cybersecurity project focused on extended detection and response, deployed using Docker containers and advanced incident logging tools.</p>
                         <div class="project-buttons">
                             <a href="https://github.com/wol-98/SecureSentinel-XDR" target="_blank" class="btn secondary-btn">View Setup</a>
+                            <button class="btn view-details-trigger" data-project="project2">Details</button>
                         </div>
                     </div>
                 </div>
@@ -128,10 +222,11 @@
                 <div class="project-card">
                     <img src="images/project3.jpg" alt="Ticketing System Interface">
                     <div class="project-content">
-                        <h3>Ticketing & Requisition System</h3>
-                        <p>A comprehensive application designed for organizational use, featuring barcode scanning capabilities and seamless payment integration.</p>
+                        <h3>Requisition System</h3>
+                        <p>Requisition Platform. Streamline your approvals, track spending, and manage resources efficiently.</p>
                         <div class="project-buttons">
                             <a href="https://github.com/wol-98/radio-kwizera-requisition" target="_blank" class="btn secondary-btn">GitHub</a>
+                            <button class="btn view-details-trigger" data-project="project3">Details</button>
                         </div>
                     </div>
                 </div>
@@ -143,6 +238,7 @@
                         <p>A robust point-of-sale application designed to streamline retail management, inventory tracking, and transaction processing.</p>
                         <div class="project-buttons">
                             <a href="https://github.com/wol-98/smartstore-pos" target="_blank" class="btn secondary-btn">GitHub</a>
+                            <button class="btn view-details-trigger" data-project="project4">Details</button>
                         </div>
                     </div>
                 </div>
@@ -154,6 +250,19 @@
                         <p>A mobile application leveraging cross-platform frameworks and socket programming for efficient real-time communication.</p>
                         <div class="project-buttons">
                             <a href="https://github.com/wol-98/socket-mobile-project" target="_blank" class="btn secondary-btn">GitHub</a>
+                            <button class="btn view-details-trigger" data-project="project5">Details</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <img src="images/project6.jpg" alt="Library Management System">
+                    <div class="project-content">
+                        <h3>Library Management System</h3>
+                        <p>A comprehensive system designed to track book inventories, manage user loans, and streamline administrative tasks for library staff.</p>
+                        <div class="project-buttons">
+                            <a href="https://github.com/wol-98/library_management" target="_blank" class="btn secondary-btn">GitHub</a>
+                            <button class="btn view-details-trigger" data-project="project6">Details</button>
                         </div>
                     </div>
                 </div>
@@ -161,23 +270,83 @@
             </div>
         </section>
 
+        <section class="github-activity" id="github">
+            <h2>Live Open Source Activity</h2>
+            
+            <div id="github-profile" class="github-profile-card">
+                <i class="fas fa-spinner fa-spin"></i> Fetching live system data...
+            </div>
+
+            <div id="github-repos" class="github-repo-grid">
+            </div>
+            
+            <div style="text-align: center; margin-top: 40px;">
+                <a href="https://github.com/wol-98" target="_blank" class="btn secondary-btn">
+                    <i class="fab fa-github"></i> View Full GitHub
+                </a>
+            </div>
+        </section>
+
         <section class="certificates" id="certificates">
-            <h2>Education & Credentials</h2>
+            <h2>Achievements & Credentials</h2>
+            
             <div class="certificate-grid">
+                
                 <div class="certificate-card">
-                    <img src="images/certificate-placeholder.jpg" alt="St. Xavier's College Emblem">
+                    <img src="images/xaviers-emblem.png" alt="St. Xavier's College Emblem" class="emblem-img">
                     <h3>BSc Information Technology</h3>
                     <p>St. Xavier’s College, Mumbai</p>
+                    <button class="btn secondary-btn view-cert-trigger" data-cert="images/xaviers-emblem.png" data-title="BSc Information Technology" data-org="St. Xavier’s College, Mumbai">View Hub</button>
                 </div>
+
                 <div class="certificate-card">
-                    <img src="images/certificate-placeholder.jpg" alt="Don Bosco VTC Emblem">
+                    <img src="images/don-bosco-emblem.png" alt="Don Bosco VTC Emblem" class="emblem-img">
                     <h3>Diploma in Computing</h3>
                     <p>Don Bosco Vocational Training Centre</p>
+                    <button class="btn secondary-btn view-cert-trigger" data-cert="images/don-bosco-emblem.png" data-title="Diploma in Computing" data-org="Don Bosco Vocational Training Centre">View Hub</button>
                 </div>
+
                 <div class="certificate-card">
-                    <img src="images/certificate-placeholder.jpg" alt="Linux Mint Logo">
+                    <img src="images/linux-mint.jpg" alt="Linux Mint Logo" class="emblem-img">
                     <h3>Systems Administration</h3>
                     <p>Applied Open Source Technologies</p>
+                    <button class="btn secondary-btn view-cert-trigger" data-cert="images/linux-mint.jpg" data-title="Systems Administration" data-org="Applied Open Source Technologies (Linux Mint Workspace)">View Hub</button>
+                </div>
+
+                <div class="certificate-card">
+                    <img src="images/cert-ai-1.jpg" alt="AI Certificate">
+                    <h3>Artificial Intelligence</h3>
+                    <p>IGNITE Life Skill Academy, Sacred Heart College, Kochi</p>
+                    <button class="btn secondary-btn view-cert-trigger" data-cert="images/cert-ai-1.jpg" data-title="Artificial Intelligence" data-org="IGNITE Life Skill Academy, Sacred Heart College, Kochi">View Preview</button>
+                </div>
+            
+                <div class="certificate-card">
+                    <img src="images/cert-ai-2.jpg" alt="AI Tools Certificate">
+                    <h3>Advanced AI Tools Mastery</h3>
+                    <p>IGNITE Life Skill Academy, Sacred Heart College, Kochi</p>
+                    <button class="btn secondary-btn view-cert-trigger" data-cert="images/cert-ai-2.jpg" data-title="Advanced AI Tools Mastery" data-org="IGNITE Life Skill Academy, Sacred Heart College, Kochi">View Preview</button>
+                </div>
+
+                <div class="certificate-card">
+                    <img src="images/cert-ai-3.jpg" alt="Advanced AI Tools Certificate">
+                    <h3>AI Tools Workshop</h3>
+                    <p>St. Xavier's College - IT Department</p>
+                    <button class="btn secondary-btn view-cert-trigger" data-cert="images/cert-ai-3.jpg" data-title="AI Tools Workshop" data-org="St. Xavier's College - IT Department">View Preview</button>
+                </div>
+
+            </div>
+
+            <h3 style="text-align: center; margin: 80px 0 40px; font-size: 32px; color: var(--text-color);">Notable Milestones</h3>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <h3>Linux Fundamentals Trainer</h3>
+                    <span>April 2026</span>
+                    <p>Prepared and conducted a dedicated training session on Linux fundamentals for absolute beginners, developing comprehensive reference cheat sheets and core command guides for the attendees.</p>
+                </div>
+                <div class="timeline-item">
+                    <h3>IoT Automation Deployment</h3>
+                    <span>January 2026</span>
+                    <p>Successfully designed, documented, and demonstrated a fully functional "Smart Streetlight System" prototype utilizing Arduino and Tinkercad for intelligent energy management.</p>
                 </div>
             </div>
         </section>
@@ -264,8 +433,50 @@
         </section>
     </main>
 
-    <footer>
-        <p>© 2026 Raphael Wol SJ. All Rights Reserved.</p>
+   <footer class="site-footer">
+        <div class="footer-content">
+            
+            <div class="footer-col brand-col">
+                <h2 class="footer-logo">Raphael</h2>
+                <p>An IT professional passionate about building secure, scalable full-stack applications and IoT automation systems.</p>
+                <div class="footer-socials">
+                    <a href="https://github.com/wol-98" aria-label="GitHub Profile" target="_blank"><i class="fab fa-github"></i></a>
+                    <a href="https://www.linkedin.com/in/wol-wol" aria-label="LinkedIn Profile" target="_blank"><i class="fab fa-linkedin"></i></a>
+                    <a href="mailto:raphaelwol20@gmail.com" aria-label="Email Me"><i class="fas fa-envelope"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-col links-col">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#about">About Me</a></li>
+                    <li><a href="#projects">Featured Projects</a></li>
+                    <li><a href="#certificates">Credentials</a></li>
+                    <li><a href="#experience">Experience</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col recent-col">
+                <h3>Current Status</h3>
+                <ul>
+                    <li style="margin-bottom: 12px; color: #e2e8f0;">
+                        <strong>Availability:</strong> Open to new opportunities & freelance projects.
+                    </li>
+                    <li style="margin-bottom: 15px; color: #e2e8f0;">
+                        <strong>Focus:</strong> Java/Spring Boot, Flutter, & System Administration.
+                    </li>
+                    <li>
+                        <a href="mailto:raphaelwol20@gmail.com" style="color: var(--primary-color); font-weight: 600;">Get in Touch <i class="fas fa-arrow-right" style="font-size: 0.85rem; margin-left: 4px;"></i></a>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+        
+        <div class="footer-bottom">
+            <p>© 2026 Raphael Wol SJ. All Rights Reserved.</p>
+        </div>
     </footer>
 
     <button id="scrollTopBtn" aria-label="Scroll to top">
@@ -273,7 +484,31 @@
     </button>
 
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-
     <script src="js/script.js"></script>
+
+    <div id="projectModal" class="modal-overlay">
+        <div class="modal-canvas">
+            <button class="modal-close-trigger" aria-label="Close Case Study">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="modal-layout-container" id="modal-dynamic-content">
+            </div>
+        </div>
+    </div>
+
+    <div id="certModal" class="cert-modal-overlay">
+        <div class="cert-modal-canvas">
+            <button class="cert-modal-close" aria-label="Close Preview">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="cert-modal-content">
+                <img id="cert-modal-img" src="" alt="Credential Preview">
+                <div class="cert-modal-caption">
+                    <h3 id="cert-modal-title"></h3>
+                    <p id="cert-modal-org"></p>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

@@ -24,11 +24,95 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // ======================================
+    // DEVELOPER CONSOLE LOGIC
+    // ======================================
+    const terminalBody = document.getElementById("terminal-body");
+    
+    const terminalSequence = [
+        { type: "input", text: "whoami" },
+        { type: "output", text: "Raphael Wol SJ - IT Professional & Student" },
+        { type: "input", text: "cat /etc/os-release" },
+        { type: "output", text: "NAME=\"Linux Mint\"\nPRETTY_NAME=\"Linux Mint 21\"" },
+        { type: "input", text: "./check_status.sh" },
+        { type: "log", status: "OK", text: "Java & Spring Boot backend initialized." },
+        { type: "log", status: "OK", text: "Flutter mobile framework verified." },
+        { type: "log", status: "OK", text: "Arduino IoT sensors responding." },
+        { type: "log", status: "WARN", text: "Cybersecurity XDR protocols active." },
+        { type: "input", text: "echo $MISSION" },
+        { type: "output", text: "\"Building secure, scalable applications at the intersection of hardware and software.\"" }
+    ];
+
+    let currentStep = 0;
+    let isTerminalRunning = false;
+
+    function runTerminalSequence() {
+        if (isTerminalRunning || !terminalBody) return;
+        isTerminalRunning = true;
+        
+        const activeLine = document.querySelector(".terminal-active-line");
+        
+        function processNextStep() {
+            if (currentStep >= terminalSequence.length) return;
+            
+            const step = terminalSequence[currentStep];
+            const newLine = document.createElement("div");
+            newLine.className = "terminal-line";
+            
+            if (step.type === "input") {
+                newLine.innerHTML = `<span class="prompt">raphael@linux-mint:~$</span> <span class="typing-cmd"></span>`;
+                terminalBody.insertBefore(newLine, activeLine);
+                typeCommand(newLine.querySelector(".typing-cmd"), step.text, processNextStep);
+            } else if (step.type === "output") {
+                newLine.innerHTML = `<span style="color: #cbd5e1; white-space: pre-line;">${step.text}</span>`;
+                terminalBody.insertBefore(newLine, activeLine);
+                setTimeout(processNextStep, 400); 
+            } else if (step.type === "log") {
+                const time = new Date().toISOString().split('T')[1].substring(0,8);
+                const statusClass = step.status === "OK" ? "log-success" : "log-warning";
+                newLine.innerHTML = `<span class="log-time">[${time}]</span> <span class="${statusClass}">[${step.status}]</span> <span>${step.text}</span>`;
+                terminalBody.insertBefore(newLine, activeLine);
+                setTimeout(processNextStep, 300);
+            }
+            
+            currentStep++;
+        }
+        
+        processNextStep();
+    }
+
+    function typeCommand(element, text, callback) {
+        let charIndex = 0;
+        function typeChar() {
+            if (charIndex < text.length) {
+                element.textContent += text.charAt(charIndex);
+                charIndex++;
+                setTimeout(typeChar, Math.random() * 50 + 30); 
+            } else {
+                setTimeout(callback, 400); 
+            }
+        }
+        typeChar();
+    }
+
+    const consoleObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                setTimeout(runTerminalSequence, 500); 
+                consoleObserver.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.5 });
+
+    const terminalSection = document.querySelector(".developer-console");
+    if (terminalSection) {
+        consoleObserver.observe(terminalSection);
+    }
+
+    // ======================================
     // DARK MODE
     // ======================================
     const themeToggle = document.getElementById("theme-toggle");
 
-    // Load saved theme
     if (localStorage.getItem("theme") === "dark") {
         document.body.classList.add("dark-mode");
     }
@@ -36,8 +120,6 @@ document.addEventListener("DOMContentLoaded", () => {
     if (themeToggle) {
         themeToggle.addEventListener("click", () => {
             document.body.classList.toggle("dark-mode");
-            
-            // Save preference
             if (document.body.classList.contains("dark-mode")) {
                 localStorage.setItem("theme", "dark");
             } else {
@@ -119,7 +201,6 @@ document.addEventListener("DOMContentLoaded", () => {
         cursorOutline.style.top = `${posY}px`;
     });
 
-    // Expand cursor on clickable elements (now includes form inputs!)
     const hoverElements = document.querySelectorAll("a, button, input, textarea, select");
     hoverElements.forEach((element) => {
         element.addEventListener("mouseenter", () => {
@@ -159,7 +240,7 @@ document.addEventListener("DOMContentLoaded", () => {
         counters.forEach(counter => {
             counter.innerText = "0";
             const target = +counter.getAttribute("data-target");
-            const duration = 2000; // Animation duration in ms
+            const duration = 2000; 
             let startTime = null;
 
             function updateCounter(currentTime) {
@@ -179,7 +260,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // ======================================
-    // INTERSECTION OBSERVER (Scroll Animations)
+    // INTERSECTION OBSERVER
     // ======================================
     const observerOptions = {
         root: null,
@@ -187,7 +268,6 @@ document.addEventListener("DOMContentLoaded", () => {
         rootMargin: "0px"
     };
 
-    // Dedicated observer for navigation highlighting
     const navItems = document.querySelectorAll(".nav-links a");
     const navObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -203,14 +283,12 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }, { root: null, threshold: 0.5, rootMargin: "0px" });
 
-    // General observer for revealing elements
     const observer = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add("active");
                 entry.target.classList.remove("hidden");
                 
-                // Trigger counters when stats section comes into view
                 if (entry.target.classList.contains("stats")) {
                     startCounters();
                 }
@@ -219,8 +297,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }, observerOptions);
 
     const sections = document.querySelectorAll("section");
-    const cards = document.querySelectorAll(".project-card, .skill-card, .service-card, .certificate-card");
-
+    const cards = document.querySelectorAll(".project-card, .skill-group-card, .service-card, .certificate-card");
     sections.forEach(section => {
         section.classList.add("hidden");
         observer.observe(section);
@@ -235,7 +312,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     // ======================================
-    // PARALLAX & SCROLL TOP BTN (Optimized)
+    // PARALLAX & SCROLL TOP BTN
     // ======================================
     const hero = document.querySelector(".hero");
     let ticking = false;
@@ -266,14 +343,12 @@ document.addEventListener("DOMContentLoaded", () => {
             const btnText = submitBtn.querySelector(".btn-text");
             const btnIcon = submitBtn.querySelector(".btn-icon");
 
-            // Change text and swap icon to a spinner
             if (btnText) btnText.textContent = "Sending...";
             if (btnIcon) {
                 btnIcon.classList.remove("fa-paper-plane");
                 btnIcon.classList.add("fa-spinner");
             }
             
-            // Disable button to prevent double-clicks
             submitBtn.style.opacity = "0.7";
             submitBtn.style.cursor = "not-allowed";
         });
@@ -307,6 +382,297 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     } catch (error) {
         console.log("Particles.js failed to load.");
+    }
+
+    // ======================================
+    // GITHUB API INTEGRATION
+    // ======================================
+    const githubUsername = "wol-98"; 
+    const profileContainer = document.getElementById("github-profile");
+    const reposContainer = document.getElementById("github-repos");
+
+    function getLanguageColor(language) {
+        const colors = {
+            "Java": "#b07219",
+            "Dart": "#00B4AB",
+            "HTML": "#e34c26",
+            "CSS": "#563d7c",
+            "JavaScript": "#f1e05a",
+            "C++": "#f34b7d",
+            "Shell": "#89e051"
+        };
+        return colors[language] || "var(--primary-color)";
+    }
+
+    async function fetchGitHubData() {
+        if (!profileContainer || !reposContainer) return;
+
+        try {
+            const profileRes = await fetch(`https://api.github.com/users/${githubUsername}`);
+            if (!profileRes.ok) throw new Error("GitHub API rate limit exceeded");
+            const profile = await profileRes.json();
+
+            profileContainer.innerHTML = `
+                <img src="${profile.avatar_url}" alt="GitHub Avatar" class="github-avatar">
+                <div class="github-stats-container">
+                    <h3>${profile.name || profile.login}</h3>
+                    <div class="github-badges">
+                        <span><i class="fas fa-book-open"></i> ${profile.public_repos} Repos</span>
+                        <span><i class="fas fa-users"></i> ${profile.followers} Followers</span>
+                    </div>
+                </div>
+            `;
+
+            const reposRes = await fetch(`https://api.github.com/users/${githubUsername}/repos?sort=updated&per_page=6`);
+            const repos = await reposRes.json();
+
+            reposContainer.innerHTML = "";
+
+            repos.forEach(repo => {
+                const langColor = getLanguageColor(repo.language);
+                const desc = repo.description ? repo.description : "No description provided.";
+                
+                const card = document.createElement("div");
+                card.className = "repo-card hidden"; 
+                
+                card.innerHTML = `
+                    <div class="repo-header">
+                        <h3><a href="${repo.html_url}" target="_blank"><i class="fas fa-folder-open" style="color: var(--primary-color); margin-right: 8px;"></i>${repo.name}</a></h3>
+                    </div>
+                    <p class="repo-desc">${desc}</p>
+                    <div class="repo-footer">
+                        <span>
+                            <span class="language-dot" style="background-color: ${langColor};"></span>
+                            ${repo.language || 'Unknown'}
+                        </span>
+                        <span><i class="far fa-star"></i> ${repo.stargazers_count}</span>
+                        <span><i class="fas fa-code-branch"></i> ${repo.forks_count}</span>
+                    </div>
+                `;
+                
+                reposContainer.appendChild(card);
+                observer.observe(card);
+            });
+
+        } catch (error) {
+            console.error("GitHub Fetch Error:", error);
+            profileContainer.innerHTML = `<p style="color: #ff5f56;">Unable to load GitHub data. Check console for details.</p>`;
+        }
+    }
+
+    const gitObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                fetchGitHubData();
+                gitObserver.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.1 });
+
+    const githubSection = document.getElementById("github");
+    if (githubSection) {
+        gitObserver.observe(githubSection);
+    }
+
+    // ======================================
+    // SKILLS PROGRESS BAR ANIMATION
+    // ======================================
+    const skillBars = document.querySelectorAll(".skill-bar-fill");
+    
+    const skillObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                skillBars.forEach(bar => {
+                    const progress = bar.getAttribute("data-progress");
+                    bar.style.width = progress;
+                });
+                skillObserver.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.2 });
+
+    const skillsSection = document.getElementById("skills");
+    if (skillsSection) {
+        skillObserver.observe(skillsSection);
+    }
+
+    // ======================================
+    // EXPANDABLE PROJECT MODALS & CASE STUDIES
+    // ======================================
+    const projectCaseStudies = {
+        project1: {
+            title: "Smart Streetlight System",
+            tags: ["Arduino", "IoT", "C++", "Tinkercad", "Automation"],
+            desc: "An intelligent public utility prototype designed to optimize energy distribution grid matrices. The node network continuously parses peripheral proximity patterns via low-latency ultrasonic arrays, instantly shifting luminous states from low-idle draw lines to 100% saturation limits upon vector capture.",
+            blueprint: "[Ambient Light LDR] ──> [ADC Register] ──┐\n                                       v\n[Ultrasonic Sensor] ──> [GPIO Pin] ──> [Microcontroller] ──> [PWM Duty Cycle] ──> [LED Array Layer]",
+            specs: {
+                architecture: "Edge Computing Node Model",
+                sensors: "Ultrasonic HC-SR04, Photoresistor LDR",
+                hardware: "ATmega328P Microcontroller Platform",
+                repository: "wol-98/Smart-Streetlight-Project"
+            }
+        },
+        project2: {
+            title: "SecureSentinel-XDR",
+            tags: ["Docker", "Linux", "Cybersecurity", "Incident Logging", "Containers"],
+            desc: "An enterprise-grade Extended Detection and Response (XDR) telemetry system built atop isolated system bounds. It maps and intercepts multi-vector threat signals, piping logs through strict permission matrices to create immutable system events.",
+            blueprint: "[Network Traffic] ──> [Container Interface] ──┐\n                                              v\n[Immutable Logs] <── [Security Matrix] <── [Core XDR Engine]",
+            specs: {
+                architecture: "Containerized Micro-Services Architecture",
+                security: "GPG Digital Signature Isolation Layer",
+                environment: "Kali Linux / Linux Mint Server Cluster",
+                repository: "wol-98/SecureSentinel-XDR"
+            }
+        },
+        project3: {
+            title: "Radio Kwizera Requisition System",
+            tags: ["Java", "Spring Boot", "Spring Security", "MySQL", "Workflows"],
+            desc: "An internal, multi-tenant administrative system developed to handle workflow routing and asset management. Built with secure backend logic, it streamlines approval tracks, manages station spending matrices, and traces technical inventory with high relational precision.",
+            blueprint: "[Client Client Request] ──> [Spring Security Layer] ──┐\n                                                       v\n[Relational Database] <── [Hibernate JPA] <── [REST Controller Class]",
+            specs: {
+                backend: "Java / Spring Boot Framework Stack",
+                database: "MySQL Relational Node Cluster",
+                security: "Role-Based Access Control (RBAC)",
+                repository: "wol-98/radio-kwizera-requisition"
+            }
+        },
+        project4: {
+            title: "SmartStore POS",
+            tags: ["Java", "Desktop Engine", "Inventory Tracking", "Relational Database"],
+            desc: "A robust transactional node management engine designed to run secure local terminal workflows. Features highly optimized data access rings for inventory state synchronization, quick execution pipelines, and automated point-of-sale receipt layout printers.",
+            blueprint: "[Barcode Scan Input] ──> [Inventory Check Engine] ──┐\n                                                     v\n[Transaction Ledger] <── [Local SQL Engine] <── [Core Payment Core Pipeline]",
+            specs: {
+                language: "Java SE Programming Core",
+                database: "SQLite Local Ledger Storage File",
+                peripherals: "Barcode Scanner Interfacing & ESC/POS Printers",
+                repository: "wol-98/smartstore-pos"
+            }
+        },
+        project5: {
+            title: "Socket Mobile Project",
+            tags: ["Flutter", "Dart", "WebSockets", "Socket Programming", "Asynchronous Systems"],
+            desc: "A cross-platform mobile networking blueprint designed to handle multi-client real-time synchronization. Employs event-driven socket pipelines to stream state records across mobile end-points without polling overhead.",
+            blueprint: "[Mobile Frontend View] <── [StreamController Model] ──┐\n                                                          v\n[Target Clients Cluster] <── [Full-Duplex Node Engine] <── [WebSocket Channel]",
+            specs: {
+                frontend: "Flutter UI Framework Engine (Android & iOS)",
+                protocol: "RFC 6455 Duplex WebSockets Protocol",
+                async: "Dart Streams & Asynchronous Event Processing",
+                repository: "wol-98/socket-mobile-project"
+            }
+        },
+        project6: {
+            title: "Library Management System",
+            tags: ["Java", "Relational Architecture", "Data Control", "Lease Systems"],
+            desc: "A backend database tracking deployment designed to enforce transactional integrity across books and user indices. Optimizes relational inventory data lookups and uses safe verification paths to process member lease terms.",
+            blueprint: "[User System Action] ──> [Business Validation Controller] ──┐\n                                                               v\n[Enforced State Ledger] <── [Relational Integrity Checks] <── [Database Core]",
+            specs: {
+                core: "Java Object-Oriented Framework Layer",
+                database: "Structured Relational Database System",
+                logic: "Lease Expiry Tracking Automations",
+                repository: "wol-98/library_management"
+            }
+        }
+    };
+
+    const modalOverlay = document.getElementById("projectModal");
+    const dynamicContainer = document.getElementById("modal-dynamic-content");
+    const closeTrigger = document.querySelector(".modal-close-trigger");
+
+    document.addEventListener("click", (e) => {
+        if (e.target.classList.contains("view-details-trigger")) {
+            const projectKey = e.target.getAttribute("data-project");
+            const data = projectCaseStudies[projectKey];
+            
+            if (!data || !modalOverlay || !dynamicContainer) return;
+            
+            const tagsHTML = data.tags.map(tag => `<span class="modal-tech-badge">${tag}</span>`).join("");
+            const specsHTML = Object.entries(data.specs).map(([key, value]) => `
+                <div class="spec-list-item">
+                    <strong>${key.replace(/_/g, " ")}</strong>
+                    <span>${value}</span>
+                </div>
+            `).join("");
+
+            dynamicContainer.innerHTML = `
+                <div class="modal-header-block">
+                    <h3>${data.title}</h3>
+                    <div class="modal-meta-tags">${tagsHTML}</div>
+                </div>
+                <div class="modal-body-grid">
+                    <div class="modal-main-desc">
+                        <h4>System Architecture Blueprint</h4>
+                        <pre class="architecture-blueprint-box"><code>${data.blueprint}</code></pre>
+                        <br>
+                        <h4>Project Case Summary</h4>
+                        <p>${data.desc}</p>
+                    </div>
+                    <div class="modal-sidebar-spec">
+                        <h4>Technical Specifications</h4>
+                        <div class="specs-wrapper-div">${specsHTML}</div>
+                    </div>
+                </div>
+            `;
+            
+            modalOverlay.classList.add("modal-active");
+            document.body.style.overflow = "hidden"; 
+        }
+    });
+
+    if (modalOverlay && closeTrigger) {
+        const dismissModal = () => {
+            modalOverlay.classList.remove("modal-active");
+            document.body.style.overflow = "auto"; 
+        };
+        closeTrigger.addEventListener("click", dismissModal);
+        modalOverlay.addEventListener("click", (e) => {
+            if (e.target === modalOverlay) dismissModal();
+        });
+        document.addEventListener("keydown", (e) => {
+            if (e.key === "Escape" && modalOverlay.classList.contains("modal-active")) dismissModal();
+        });
+    }
+
+    // ======================================
+    // CERTIFICATE PREVIEW GALLERY MODAL
+    // ======================================
+    const certModal = document.getElementById("certModal");
+    const certImg = document.getElementById("cert-modal-img");
+    const certTitle = document.getElementById("cert-modal-title");
+    const certOrg = document.getElementById("cert-modal-org");
+    const certClose = document.querySelector(".cert-modal-close");
+
+    document.addEventListener("click", (e) => {
+        if (e.target.classList.contains("view-cert-trigger")) {
+            const imgSrc = e.target.getAttribute("data-cert");
+            const titleText = e.target.getAttribute("data-title");
+            const orgText = e.target.getAttribute("data-org");
+
+            if (!certModal || !certImg || !certTitle || !certOrg) return;
+
+            // Set content streams dynamically
+            certImg.src = imgSrc;
+            certTitle.textContent = titleText;
+            certOrg.textContent = orgText;
+
+            // Reveal Overlay Panel
+            certModal.classList.add("modal-active");
+            document.body.style.overflow = "hidden"; // Intercept viewport main background scrolling
+        }
+    });
+
+    if (certModal && certClose) {
+        const dismissCertModal = () => {
+            certModal.classList.remove("modal-active");
+            document.body.style.overflow = "auto"; // Restore system background scroll capabilities
+        };
+
+        certClose.addEventListener("click", dismissCertModal);
+        certModal.addEventListener("click", (e) => {
+            if (e.target === certModal) dismissCertModal();
+        });
+        document.addEventListener("keydown", (e) => {
+            if (e.key === "Escape" && certModal.classList.contains("modal-active")) dismissCertModal();
+        });
     }
 
 });

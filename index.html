@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Raphael Wol SJ's portfolio website showcasing software development, Linux administration, and IoT projects.">
+
+    <title>Raphael Wol SJ | Portfolio</title>
+    <link rel="icon" href="images/profile.jpg">
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div id="loader">
+        <div class="loader-content">
+            <div class="spinner"></div>
+            <h2>Loading Portfolio...</h2>
+        </div>
+    </div>
+
+    <div class="cursor-dot"></div>
+    <div class="cursor-outline"></div>
+
+    <nav>
+        <h1 class="logo">Raphael</h1>
+        <button class="hamburger" aria-label="Open navigation menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <ul class="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#certificates">Education</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <button id="theme-toggle" aria-label="Toggle dark mode">
+            <i class="fas fa-moon"></i>
+        </button>
+    </nav>
+
+    <main>
+        <section class="hero">
+            <div id="particles-js"></div>
+            <div class="hero-content">
+                <img src="images/profile.jpg" alt="Raphael Wol SJ Headshot" class="profile-image">
+                <h2>Hello, I'm Raphael</h2>
+                <p class="typing-text"></p>
+                <div class="hero-buttons">
+                    <a href="#projects" class="btn">View Projects</a>
+                    <a href="assets/cv.pdf" class="btn secondary-btn" download>Download CV</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="about" id="about">
+            <h2>About Me</h2>
+            <p>
+                I am an IT professional and student passionate about building secure, scalable applications. 
+                With experience ranging from backend development using Java and Spring Boot to mobile application 
+                development with Flutter, I enjoy tackling complex technical challenges. Whether I am configuring 
+                Linux server environments, exploring cybersecurity concepts, or wiring up Arduino-based IoT automation 
+                systems, I am driven by a curiosity for how software and hardware connect.
+            </p>
+        </section>
+
+        <section class="skills" id="skills">
+            <h2>Technical Arsenal</h2>
+            <div class="skills-container">
+                <div class="skill-card">Java & Spring Boot</div>
+                <div class="skill-card">Flutter & Dart</div>
+                <div class="skill-card">Linux Administration</div>
+                <div class="skill-card">Arduino & IoT</div>
+                <div class="skill-card">Cybersecurity Tools</div>
+                <div class="skill-card">Docker</div>
+            </div>
+        </section>
+
+        <section class="experience" id="experience">
+            <h2>Experience</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <h3>IT Instructor & Support</h3>
+                    <span>2026 - Present</span>
+                    <p>Providing computing instruction and technical support within educational institutions, accompanying students in their technical learning journey.</p>
+                </div>
+                <div class="timeline-item">
+                    <h3>Software & Systems Developer</h3>
+                    <span>2025 - Present</span>
+                    <p>Building full-stack solutions, configuring Linux Mint environments, and managing application deployments across web and mobile platforms.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="projects" id="projects">
+            <h2>Featured Projects</h2>
+            <div class="project-grid">
+                
+                <div class="project-card">
+                    <img src="images/project1.jpg" alt="Smart Streetlight System Prototype">
+                    <div class="project-content">
+                        <h3>Smart Streetlight System</h3>
+                        <p>An IoT automation project built with Arduino and Tinkercad, utilizing ultrasonic and light-dependent sensors for intelligent energy management.</p>
+                        <div class="project-buttons">
+                            <a href="https://github.com/wol-98/Smart-Streetlight-Project" target="_blank" class="btn secondary-btn">View Code</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <img src="images/project2.jpg" alt="Terminal showing Docker and XDR setup">
+                    <div class="project-content">
+                        <h3>SecureSentinel-XDR</h3>
+                        <p>A cybersecurity project focused on extended detection and response, deployed using Docker containers and advanced incident logging tools.</p>
+                        <div class="project-buttons">
+                            <a href="https://github.com/wol-98/SecureSentinel-XDR" target="_blank" class="btn secondary-btn">View Setup</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <img src="images/project3.jpg" alt="Ticketing System Interface">
+                    <div class="project-content">
+                        <h3>Ticketing & Requisition System</h3>
+                        <p>A comprehensive application designed for organizational use, featuring barcode scanning capabilities and seamless payment integration.</p>
+                        <div class="project-buttons">
+                            <a href="https://github.com/wol-98/radio-kwizera-requisition" target="_blank" class="btn secondary-btn">GitHub</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <img src="images/project4.jpg" alt="Point of Sale System">
+                    <div class="project-content">
+                        <h3>SmartStore POS</h3>
+                        <p>A robust point-of-sale application designed to streamline retail management, inventory tracking, and transaction processing.</p>
+                        <div class="project-buttons">
+                            <a href="https://github.com/wol-98/smartstore-pos" target="_blank" class="btn secondary-btn">GitHub</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <img src="images/project5.jpg" alt="Mobile Application Interface">
+                    <div class="project-content">
+                        <h3>Socket Mobile App</h3>
+                        <p>A mobile application leveraging cross-platform frameworks and socket programming for efficient real-time communication.</p>
+                        <div class="project-buttons">
+                            <a href="https://github.com/wol-98/socket-mobile-project" target="_blank" class="btn secondary-btn">GitHub</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section class="certificates" id="certificates">
+            <h2>Education & Credentials</h2>
+            <div class="certificate-grid">
+                <div class="certificate-card">
+                    <img src="images/certificate-placeholder.jpg" alt="St. Xavier's College Emblem">
+                    <h3>BSc Information Technology</h3>
+                    <p>St. Xavier’s College, Mumbai</p>
+                </div>
+                <div class="certificate-card">
+                    <img src="images/certificate-placeholder.jpg" alt="Don Bosco VTC Emblem">
+                    <h3>Diploma in Computing</h3>
+                    <p>Don Bosco Vocational Training Centre</p>
+                </div>
+                <div class="certificate-card">
+                    <img src="images/certificate-placeholder.jpg" alt="Linux Mint Logo">
+                    <h3>Systems Administration</h3>
+                    <p>Applied Open Source Technologies</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="services" id="services">
+            <h2>What I Do</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <i class="fas fa-code"></i>
+                    <h3>Software Engineering</h3>
+                    <p>Developing robust backend services and cross-platform mobile applications.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-server"></i>
+                    <h3>System Administration</h3>
+                    <p>Deploying, securing, and automating Linux-based server environments.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-microchip"></i>
+                    <h3>IoT Development</h3>
+                    <p>Designing smart, sensor-driven hardware solutions with Arduino.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="stats">
+            <div class="stat-card">
+                <h2 class="counter" data-target="15">0</h2>
+                <p>Projects Completed</p>
+            </div>
+            <div class="stat-card">
+                <h2 class="counter" data-target="8">0</h2>
+                <p>Core Technologies</p>
+            </div>
+            <div class="stat-card">
+                <h2 class="counter" data-target="3">0</h2>
+                <p>Years Experience</p>
+            </div>
+        </section>
+
+        <section class="contact" id="contact">
+            <h2>Get In Touch</h2>
+            <form action="https://formspree.io/f/YOUR_ENDPOINT_HERE" method="POST" id="contactForm">
+                
+                <input type="text" name="_gotcha" style="display:none" />
+
+                <div class="input-group">
+                    <i class="fas fa-user"></i>
+                    <input type="text" name="name" placeholder="Your Name" required>
+                </div>
+
+                <div class="input-group">
+                    <i class="fas fa-envelope"></i>
+                    <input type="email" name="email" placeholder="Your Email" required>
+                </div>
+
+                <div class="input-group">
+                    <i class="fas fa-briefcase"></i>
+                    <select name="subject" required>
+                        <option value="" disabled selected>What is this regarding?</option>
+                        <option value="Job Opportunity">Job Opportunity</option>
+                        <option value="Freelance Project">Freelance / Project</option>
+                        <option value="Networking">Networking</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+
+                <div class="input-group align-top">
+                    <i class="fas fa-comment-alt"></i>
+                    <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+                </div>
+
+                <button type="submit" id="submitBtn">
+                    <span class="btn-text">Send Message</span>
+                    <i class="fas fa-paper-plane btn-icon"></i>
+                </button>
+            </form>
+            
+            <div class="social-icons">
+                <a href="https://github.com/wol-98" aria-label="GitHub Profile" target="_blank"><i class="fab fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/wol-wol" aria-label="LinkedIn Profile" target="_blank"><i class="fab fa-linkedin"></i></a>
+                <a href="mailto:raphaelwol20@gmail.com" aria-label="Email Me"><i class="fas fa-envelope"></i></a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2026 Raphael Wol SJ. All Rights Reserved.</p>
+    </footer>
+
+    <button id="scrollTopBtn" aria-label="Scroll to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

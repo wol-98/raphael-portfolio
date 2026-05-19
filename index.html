@@ -18,7 +18,7 @@
     <div id="loader">
         <div class="loader-content">
             <div class="spinner"></div>
-            <h2>Loading Portfolio...</h2>
+            <h2>Loading RaphaOS...</h2>
         </div>
     </div>
 
@@ -26,7 +26,10 @@
     <div class="cursor-outline"></div>
 
     <nav>
-        <h1 class="logo">Raphael</h1>
+        <div class="os-brand">
+            <h1 class="logo">RaphaOS</h1>
+            <span class="os-version">v2.6</span>
+        </div>
         <button class="hamburger" aria-label="Open navigation menu">
             <span></span>
             <span></span>
@@ -37,6 +40,7 @@
             <li><a href="#skills">Skills</a></li>
             <li><a href="#projects">Projects</a></li>
             <li><a href="#experience">Experience</a></li>
+            <li><a href="#changelog">Changelog</a></li>
             <li><a href="#services">Services</a></li>
             <li><a href="#certificates">Credentials</a></li>
             <li><a href="#contact">Contact</a></li>
@@ -55,7 +59,7 @@
                 <p class="typing-text"></p>
                 <div class="hero-buttons">
                     <a href="#projects" class="btn">View Projects</a>
-                    <a href="assets/cv.pdf" class="btn secondary-btn" download>Download CV</a>
+                    <button id="open-resume-btn" class="btn secondary-btn">Interactive Resume</button>
                 </div>
             </div>
         </section>
@@ -351,6 +355,52 @@
             </div>
         </section>
 
+        <section class="changelog" id="changelog">
+            <h2>System Build History</h2>
+            <div class="changelog-container">
+                
+                <div class="changelog-entry">
+                    <div class="changelog-version">v2.6.0</div>
+                    <div class="changelog-details">
+                        <h4>RaphaOS & Command Palette Integration</h4>
+                        <span class="changelog-date">Current Release</span>
+                        <ul>
+                            <li><span class="badge feature">FEATURE</span> Added Ctrl+K command palette for power users.</li>
+                            <li><span class="badge feature">FEATURE</span> Rebranded environment to RaphaOS.</li>
+                            <li><span class="badge update">UPDATE</span> Integrated system changelog telemetry.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="changelog-entry">
+                    <div class="changelog-version">v2.5.2</div>
+                    <div class="changelog-details">
+                        <h4>API & Modal Architecture</h4>
+                        <span class="changelog-date">Previous Release</span>
+                        <ul>
+                            <li><span class="badge feature">FEATURE</span> Integrated live GitHub API repository sync.</li>
+                            <li><span class="badge feature">FEATURE</span> Deployed dynamic glassmorphism project modals.</li>
+                            <li><span class="badge update">UPDATE</span> Upgraded tech stack gauges to animated ecosystem matrices.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="changelog-entry">
+                    <div class="changelog-version">v1.0.0</div>
+                    <div class="changelog-details">
+                        <h4>Core System Initialization</h4>
+                        <span class="changelog-date">Initial Deployment</span>
+                        <ul>
+                            <li><span class="badge init">INIT</span> Bootstrapped Linux-inspired dark architecture.</li>
+                            <li><span class="badge init">INIT</span> Deployed terminal-styled developer console.</li>
+                            <li><span class="badge init">INIT</span> Configured edge-to-edge canvas and particle engines.</li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
         <section class="services" id="services">
             <h2>What I Do</h2>
             <div class="services-grid">
@@ -437,7 +487,7 @@
         <div class="footer-content">
             
             <div class="footer-col brand-col">
-                <h2 class="footer-logo">Raphael</h2>
+                <h2 class="footer-logo">RaphaOS</h2>
                 <p>An IT professional passionate about building secure, scalable full-stack applications and IoT automation systems.</p>
                 <div class="footer-socials">
                     <a href="https://github.com/wol-98" aria-label="GitHub Profile" target="_blank"><i class="fab fa-github"></i></a>
@@ -510,5 +560,110 @@
             </div>
         </div>
     </div>
+
+    <div id="resume-panel" class="resume-overlay">
+        <div class="resume-canvas">
+            <div class="resume-header">
+                <div class="rh-left">
+                    <h2>Raphael Wol SJ</h2>
+                    <p class="rh-subtitle">IT Professional & Full-Stack Developer</p>
+                </div>
+                <div class="rh-right">
+                    <a href="assets/cv.pdf" target="_blank" class="btn secondary-btn print-btn"><i class="fas fa-file-pdf"></i> Download PDF</a>
+                    <button class="resume-close" aria-label="Close Resume"><i class="fas fa-times"></i></button>
+                </div>
+            </div>
+            <div class="resume-body">
+                <div class="rb-sidebar">
+                    <div class="rb-section">
+                        <h3><i class="fas fa-terminal"></i> Core Stack</h3>
+                        <div class="rb-tags">
+                            <span>Java</span><span>Spring Boot</span><span>Flutter</span><span>Linux Mint</span><span>Docker</span><span>Arduino</span>
+                        </div>
+                    </div>
+                    <div class="rb-section">
+                        <h3><i class="fas fa-graduation-cap"></i> Education</h3>
+                        <div class="rb-item">
+                            <strong>BSc Information Technology</strong>
+                            <span>St. Xavier’s College, Mumbai</span>
+                        </div>
+                        <div class="rb-item">
+                            <strong>Diploma in Computing</strong>
+                            <span>Don Bosco VTC</span>
+                        </div>
+                    </div>
+                    <div class="rb-section">
+                        <h3><i class="fas fa-certificate"></i> Certifications</h3>
+                        <div class="rb-item">
+                            <strong>AI Tools Mastery</strong>
+                            <span>IGNITE Life Skill Academy</span>
+                        </div>
+                        <div class="rb-item">
+                            <strong>Systems Administration</strong>
+                            <span>Applied Open Source</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="rb-main">
+                    <div class="rb-section">
+                        <h3><i class="fas fa-briefcase"></i> Professional Experience</h3>
+                        <div class="rb-job">
+                            <div class="job-head">
+                                <strong>IT Instructor & Support</strong>
+                                <span class="job-date">2026 - Present</span>
+                            </div>
+                            <p>Providing computing instruction and technical support within educational institutions, directly accompanying students in their technical learning journey.</p>
+                        </div>
+                        <div class="rb-job">
+                            <div class="job-head">
+                                <strong>Software & Systems Developer</strong>
+                                <span class="job-date">2025 - Present</span>
+                            </div>
+                            <p>Architecting full-stack web and mobile applications (Java/Spring Boot, Flutter), configuring robust Linux environments, and deploying Docker-based security telemetry platforms.</p>
+                        </div>
+                    </div>
+                    <div class="rb-section">
+                        <h3><i class="fas fa-shield-alt"></i> Notable Engineering Projects</h3>
+                        <div class="rb-job">
+                            <div class="job-head">
+                                <strong>SecureSentinel-XDR</strong>
+                                <span class="job-date">Cybersecurity</span>
+                            </div>
+                            <p>Deployed a containerized extended detection and response (XDR) telemetry system with immutable logging matrices.</p>
+                        </div>
+                        <div class="rb-job">
+                            <div class="job-head">
+                                <strong>Smart Streetlight System</strong>
+                                <span class="job-date">Hardware / IoT</span>
+                            </div>
+                            <p>Developed a C++ Arduino-based edge computing node leveraging ultrasonic arrays for automated energy grid optimization.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="command-palette" class="cp-overlay">
+        <div class="cp-canvas">
+            <div class="cp-header">
+                <i class="fas fa-terminal"></i>
+                <input type="text" id="cp-search" placeholder="Type a command or search... (e.g. 'contact', 'github')" autocomplete="off">
+                <span class="cp-shortcut">ESC</span>
+            </div>
+            <div class="cp-body">
+                <div class="cp-section-title">Available Commands</div>
+                <ul id="cp-list">
+                    <li data-action="theme"><i class="fas fa-moon"></i> Toggle Dark/Light Mode <span class="cp-kbd">T</span></li>
+                    <li data-action="scroll-projects"><i class="fas fa-folder-open"></i> Open Projects Directory <span class="cp-kbd">P</span></li>
+                    <li data-action="github"><i class="fab fa-github"></i> Launch GitHub Interface <span class="cp-kbd">G</span></li>
+                    <li data-action="resume"><i class="fas fa-user-tie"></i> Open Interactive Resume <span class="cp-kbd">R</span></li>
+                    <li data-action="contact"><i class="fas fa-envelope"></i> Initialize Contact Protocol <span class="cp-kbd">C</span></li>
+                    <li data-action="top"><i class="fas fa-arrow-up"></i> Return to Root (Top) <span class="cp-kbd">^</span></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
 </body>
 </html>

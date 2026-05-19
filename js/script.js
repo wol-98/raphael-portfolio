@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
     
     const terminalSequence = [
         { type: "input", text: "whoami" },
-        { type: "output", text: "Raphael Wol SJ - IT Professional & Student" },
+        { type: "output", text: "Raphael Wol-IT Professional & Student" },
         { type: "input", text: "cat /etc/os-release" },
         { type: "output", text: "NAME=\"Linux Mint\"\nPRETTY_NAME=\"Linux Mint 21\"" },
         { type: "input", text: "./check_status.sh" },
@@ -674,5 +674,182 @@ document.addEventListener("DOMContentLoaded", () => {
             if (e.key === "Escape" && certModal.classList.contains("modal-active")) dismissCertModal();
         });
     }
+
+    // ======================================
+    // INTERACTIVE RESUME PANEL
+    // ======================================
+    const resumePanel = document.getElementById("resume-panel");
+    const openResumeBtn = document.getElementById("open-resume-btn");
+    const closeResumeBtn = document.querySelector(".resume-close");
+
+    function toggleResume() {
+        if (!resumePanel) return;
+        if (resumePanel.classList.contains("active")) {
+            resumePanel.classList.remove("active");
+            document.body.style.overflow = "auto";
+        } else {
+            resumePanel.classList.add("active");
+            document.body.style.overflow = "hidden";
+        }
+    }
+
+    if (openResumeBtn) {
+        openResumeBtn.addEventListener("click", (e) => {
+            e.preventDefault();
+            toggleResume();
+        });
+    }
+
+    if (closeResumeBtn) {
+        closeResumeBtn.addEventListener("click", toggleResume);
+    }
+
+    if (resumePanel) {
+        resumePanel.addEventListener("click", (e) => {
+            if (e.target === resumePanel) toggleResume();
+        });
+        document.addEventListener("keydown", (e) => {
+            if (e.key === "Escape" && resumePanel.classList.contains("active")) toggleResume();
+        });
+    }
+
+    // ======================================
+    // COMMAND PALETTE (Ctrl + K) ENGINE
+    // ======================================
+    const cpOverlay = document.getElementById("command-palette");
+    const cpSearch = document.getElementById("cp-search");
+    const cpList = document.getElementById("cp-list");
+    let cpItems = cpList ? Array.from(cpList.querySelectorAll("li")) : [];
+    let selectedIndex = 0;
+
+    // Open/Close toggle
+    function toggleCommandPalette() {
+        if (!cpOverlay) return;
+        const isActive = cpOverlay.classList.contains("active");
+        
+        if (isActive) {
+            cpOverlay.classList.remove("active");
+            document.body.style.overflow = "auto";
+        } else {
+            cpOverlay.classList.add("active");
+            document.body.style.overflow = "hidden";
+            cpSearch.value = "";
+            filterCommands("");
+            setTimeout(() => cpSearch.focus(), 100);
+        }
+    }
+
+    // Keyboard Shortcuts Listener
+    document.addEventListener("keydown", (e) => {
+        // Trigger on Ctrl+K or Cmd+K
+        if ((e.ctrlKey || e.metaKey) && e.key === "k") {
+            e.preventDefault();
+            toggleCommandPalette();
+        }
+        
+        // Escape to close
+        if (e.key === "Escape" && cpOverlay && cpOverlay.classList.contains("active")) {
+            toggleCommandPalette();
+        }
+
+        // Arrow navigation inside palette
+        if (cpOverlay && cpOverlay.classList.contains("active")) {
+            const visibleItems = cpItems.filter(item => item.style.display !== "none");
+            
+            if (e.key === "ArrowDown") {
+                e.preventDefault();
+                selectedIndex = (selectedIndex + 1) % visibleItems.length;
+                updateSelection(visibleItems);
+            } else if (e.key === "ArrowUp") {
+                e.preventDefault();
+                selectedIndex = (selectedIndex - 1 + visibleItems.length) % visibleItems.length;
+                updateSelection(visibleItems);
+            } else if (e.key === "Enter") {
+                e.preventDefault();
+                if (visibleItems[selectedIndex]) {
+                    executeCommand(visibleItems[selectedIndex].getAttribute("data-action"));
+                }
+            }
+        }
+    });
+
+    // Close on background click
+    if (cpOverlay) {
+        cpOverlay.addEventListener("click", (e) => {
+            if (e.target === cpOverlay) toggleCommandPalette();
+        });
+    }
+
+    // Filtering logic
+    if (cpSearch) {
+        cpSearch.addEventListener("input", (e) => {
+            filterCommands(e.target.value);
+        });
+    }
+
+    function filterCommands(query) {
+        const lowerQuery = query.toLowerCase();
+        let visibleCount = 0;
+        
+        cpItems.forEach(item => {
+            const text = item.textContent.toLowerCase();
+            if (text.includes(lowerQuery)) {
+                item.style.display = "flex";
+                visibleCount++;
+            } else {
+                item.style.display = "none";
+            }
+        });
+
+        selectedIndex = 0;
+        const visibleItems = cpItems.filter(item => item.style.display !== "none");
+        updateSelection(visibleItems);
+    }
+
+    function updateSelection(visibleItems) {
+        cpItems.forEach(item => item.classList.remove("selected"));
+        if (visibleItems.length > 0 && visibleItems[selectedIndex]) {
+            visibleItems[selectedIndex].classList.add("selected");
+            visibleItems[selectedIndex].scrollIntoView({ block: 'nearest' });
+        }
+    }
+
+    // Command Execution Matrix
+    function executeCommand(action) {
+        toggleCommandPalette(); // Close palette first
+        
+        switch(action) {
+            case "theme":
+                document.getElementById("theme-toggle")?.click();
+                break;
+            case "scroll-projects":
+                document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" });
+                break;
+            case "github":
+                window.open("https://github.com/wol-98", "_blank");
+                break;
+            case "resume":
+                if(typeof toggleResume === 'function') toggleResume(); 
+                break;
+            case "contact":
+                document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
+                break;
+            case "top":
+                window.scrollTo({ top: 0, behavior: "smooth" });
+                break;
+        }
+    }
+
+    // Mouse click execution
+    cpItems.forEach(item => {
+        item.addEventListener("click", () => {
+            executeCommand(item.getAttribute("data-action"));
+        });
+        item.addEventListener("mouseenter", (e) => {
+            const visibleItems = cpItems.filter(i => i.style.display !== "none");
+            selectedIndex = visibleItems.indexOf(e.target);
+            updateSelection(visibleItems);
+        });
+    });
 
 });
